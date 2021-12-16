@@ -1,0 +1,87 @@
+{% extends 'base2.html' %}
+{% block content %}
+<div class="container">
+  <div id="inner-hero" class="full-width" style="background-image: url('/static/images/01.png');"></div>
+  <img src="{{g.user.image_url}}" alt="Image for js12346new" id="profile-avatar">
+  <div class="row full-width">
+    <div class="container">
+      <div class="row justify-content-end">
+        <div class="col-9">
+          <ul class="user-stats nav nav-pills">
+            <li class="stat">
+              <p class="small">Playlist</p>
+              <h4>
+                <a href="/playlists">{{p}}</a>
+              </h4>
+            </li>
+            <li class="stat">
+              <p class="small">Albums</p>
+              <h4>
+                <a href="#">{{a}}</a>
+              </h4>
+            </li>
+            <li class="stat">
+              <p class="small">Songs</p>
+              <h4>
+                <a href="/songs">{{s}}</a>
+              </h4>
+            </li>
+            <li class="stat">
+              {% if request.endpoint != None %}              
+                <form action="/search">
+                  <input name="q" placeholder="Sample Music" id="search">
+                  <button class="btn fa fa-search"></button>           
+                </form>              
+              {% endif %}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-sm-3">
+      <h4 id="sidebar-username">{{g.user.username}}</h4>
+  
+  <p>{{g.user.bio}}</p>
+  <p class="user-location"><span class="fa fa-map-marker"></span>{{g.user.location}}</p>
+  <p>
+
+            <div class="ml-auto">
+              <form method="POST" action="/users/delete" class="form-inline">
+                <button class="btn btn-primary ml-2">Delete Profile</button><!-- btn-outline-danger -->
+              </form>
+            </div>
+  </p>
+  </div>
+  
+    
+    <div class="col-sm-6">
+      <div class="column">
+        <audio id="mysong" controls="controls" autoplay="autoplay"></audio>
+
+        <ul>
+          {% for song in songs %}
+
+          <li>
+            <a  href="JavaScript:void(0);" 
+                onclick="playsong('{{song.filename}}')">{{song.filename}}</a>
+          </li>
+          
+          {% endfor %}
+        </ul>
+        
+        <p>
+          <a class="btn btn-primary" href="/songs/add">Add a song</a>
+          <a class="btn btn-primary" href="/songs_in_musicFolder">All songs in Music Directory</a>
+        </p>
+    </div> 
+     
+  </div>
+  </div>
+
+
+
+<script type="text/javascript">function playsong(song){$('audio').attr('src', '/static/music/'+ song);}</script>
+{% endblock %}

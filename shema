@@ -1,0 +1,23 @@
+ Schema |      Name       | Type  |   Owner    |    Size    | Description 
+--------+-----------------+-------+------------+------------+-------------
+ public | playlist        | table | codemaster | 16 kB      | 
+ public | playlists_songs | table | codemaster | 8192 bytes | 
+ public | songs           | table | codemaster | 16 kB      | 
+(3 rows)
+
+
+jsmusic_app=# select * from playlists_songs;
+ id | playlist_id | song_id 
+----+-------------+---------
+  1 |           2 |       4
+  2 |           1 |       6
+  3 |           3 |       5
+  4 |           1 |       1
+  5 |           1 |       3
+  6 |           3 |       2
+  7 |           2 |       6
+  8 |           2 |       3
+  9 |           2 |       1
+ 10 |           3 |       1
+ 11 |           4 |       8
+(11 rows)
